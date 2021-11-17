@@ -10,7 +10,7 @@ using Reservas.Models.Map;
 namespace Reservas.Migrations
 {
     [DbContext(typeof(ReservasDbContext))]
-    [Migration("20211116011851_InitialCreate")]
+    [Migration("20211117163004_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,22 @@ namespace Reservas.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Reservas.Models.CategoriaPlato", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("NombreCategoria")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categoria");
+                });
 
             modelBuilder.Entity("Reservas.Models.Mesa", b =>
                 {
@@ -75,6 +91,34 @@ namespace Reservas.Migrations
                     b.ToTable("Personal");
                 });
 
+            modelBuilder.Entity("Reservas.Models.Plato", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CategoriaId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NombrePlato")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Precio")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoriaId");
+
+                    b.ToTable("Plato");
+                });
+
             modelBuilder.Entity("Reservas.Models.Reserva", b =>
                 {
                     b.Property<int>("Id")
@@ -122,6 +166,17 @@ namespace Reservas.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuario");
+                });
+
+            modelBuilder.Entity("Reservas.Models.Plato", b =>
+                {
+                    b.HasOne("Reservas.Models.CategoriaPlato", "CategoriaPlato")
+                        .WithMany()
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CategoriaPlato");
                 });
 
             modelBuilder.Entity("Reservas.Models.Reserva", b =>
