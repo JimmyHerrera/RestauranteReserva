@@ -49,6 +49,7 @@ namespace Reservas
             services.AddTransient<IReserva, ReservaService>();
             services.AddTransient<IPersonal, PersonaService>();
             services.AddTransient<ICategoria, CategoriaPlatoService>();
+            services.AddTransient<IPlato, PlatoService>();
         }
         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
