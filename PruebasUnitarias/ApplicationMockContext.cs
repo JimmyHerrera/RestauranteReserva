@@ -121,6 +121,38 @@ namespace PruebasUnitarias
 
             }.AsQueryable();
         }
+
+        public static Mock<ReservasDbContext> getListaCategoriaContextMock()
+        {
+            IQueryable<CategoriaPlato> categoria = getCategoria();
+
+            var mockDbSetCategoria = new Mock<DbSet<CategoriaPlato>>();
+            mockDbSetCategoria.As<IQueryable<CategoriaPlato>>().Setup(m => m.Provider).Returns(categoria.Provider);
+            mockDbSetCategoria.As<IQueryable<CategoriaPlato>>().Setup(m => m.Expression).Returns(categoria.Expression);
+            mockDbSetCategoria.As<IQueryable<CategoriaPlato>>().Setup(m => m.ElementType).Returns(categoria.ElementType);
+            mockDbSetCategoria.As<IQueryable<CategoriaPlato>>().Setup(m => m.GetEnumerator()).Returns(categoria.GetEnumerator());
+            mockDbSetCategoria.Setup(m => m.AsQueryable()).Returns(categoria);
+
+
+            var mockContext = new Mock<ReservasDbContext>(new DbContextOptions<ReservasDbContext>());
+            mockContext.Setup(c => c.CategoriaPlato).Returns(mockDbSetCategoria.Object);
+
+
+            return mockContext;
+        }
+
+        private static IQueryable<CategoriaPlato> getCategoria()
+        {
+            return new List<CategoriaPlato>
+            {
+               new CategoriaPlato { Id = 1, NombreCategoria = "Prueba 1", },
+               new CategoriaPlato { Id = 2, NombreCategoria = "Prueba 2", },
+               new CategoriaPlato { Id = 3, NombreCategoria = "Prueba 3", },
+               new CategoriaPlato { Id = 4, NombreCategoria = "Prueba 4", }
+
+            }.AsQueryable();
+        }
+
     }
 
 }

@@ -49,14 +49,6 @@ namespace PruebasUnitarias.TestControladorMesa
             Assert.AreEqual(2, mesas.Count);
         }
 
-        [Test]
-        public void testReturnListaMesasReservadasCaso04()
-        {
-
-            var mesaRepository = new MesaService(mockContex.Object);
-            List<Mesa> mesas = (List<Mesa>)mesaRepository.getMesaByState();
-
-            Assert.AreEqual(1, mesas.Count);
-        }
+        
     }
 }
