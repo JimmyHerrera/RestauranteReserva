@@ -45,7 +45,7 @@
         ["xpath=//h1", "xpath:position"],
         ["xpath=//h1[contains(.,'Restaurante Lobos Marinos')]", "xpath:innerText"]
       ],
-      "value": "Restaurante Lobos Marinos"
+      "value": "La Olla de Doña Silvia"
     }, {
       "id": "607deb6c-f21e-4782-8093-6d59d7498614",
       "comment": "",
@@ -126,7 +126,7 @@
         ["xpath=//h1", "xpath:position"],
         ["xpath=//h1[contains(.,'Restaurante Lobos Marinos')]", "xpath:innerText"]
       ],
-      "value": "Restaurante Lobos Marinos"
+      "value": "La Olla de Doña Silvia"
     }, {
       "id": "6a2bedec-400e-49e3-9e5e-9106839ea9d0",
       "comment": "",
@@ -1036,7 +1036,7 @@
         ["xpath=//input[@id='NumeroMesa']", "xpath:attributes"],
         ["xpath=//div/input", "xpath:position"]
       ],
-      "value": "105"
+      "value": "150"
     }, {
       "id": "8d6a3fec-0fbf-4f01-86ae-1f1132861efb",
       "comment": "",
@@ -1233,7 +1233,7 @@
         ["xpath=//input[@id='NumeroMesa']", "xpath:attributes"],
         ["xpath=//div/input", "xpath:position"]
       ],
-      "value": "106"
+      "value": "160"
     }, {
       "id": "fcbe41e3-01ab-422a-953a-4f52d219d4f7",
       "comment": "",
