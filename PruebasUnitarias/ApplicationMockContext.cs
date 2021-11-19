@@ -122,6 +122,38 @@ namespace PruebasUnitarias
             }.AsQueryable();
         }
 
+        public static Mock<ReservasDbContext> getListaPlatoContextMock()
+        {
+            IQueryable<Plato> plato = getPlato();
+
+            var mockDbSetPlato = new Mock<DbSet<Plato>>();
+            mockDbSetPlato.As<IQueryable<Plato>>().Setup(m => m.Provider).Returns(plato.Provider);
+            mockDbSetPlato.As<IQueryable<Plato>>().Setup(m => m.Expression).Returns(plato.Expression);
+            mockDbSetPlato.As<IQueryable<Plato>>().Setup(m => m.ElementType).Returns(plato.ElementType);
+            mockDbSetPlato.As<IQueryable<Plato>>().Setup(m => m.GetEnumerator()).Returns(plato.GetEnumerator());
+            mockDbSetPlato.Setup(m => m.AsQueryable()).Returns(plato);
+
+
+            var mockContext = new Mock<ReservasDbContext>(new DbContextOptions<ReservasDbContext>());
+            mockContext.Setup(c => c.Plato).Returns(mockDbSetPlato.Object);
+
+
+            return mockContext;
+        }
+
+        private static IQueryable<Plato> getPlato()
+        {
+            return new List<Plato>
+            {
+               new Plato { Id = 1, NombrePlato = "Prueba 1", Descripcion ="Plato prueba 1" , Precio=12.4, CategoriaId=1},
+               new Plato { Id = 2, NombrePlato = "Prueba 2", Descripcion ="Plato prueba 2" , Precio=13.4, CategoriaId=2},
+               new Plato { Id = 3, NombrePlato = "Prueba 3", Descripcion ="Plato prueba 3" , Precio=15.4, CategoriaId=3},
+               new Plato { Id = 4, NombrePlato = "Prueba 4", Descripcion ="Plato prueba 4" , Precio=16.4, CategoriaId=4},
+ 
+
+            }.AsQueryable();
+        }
+
         public static Mock<ReservasDbContext> getListaCategoriaContextMock()
         {
             IQueryable<CategoriaPlato> categoria = getCategoria();
