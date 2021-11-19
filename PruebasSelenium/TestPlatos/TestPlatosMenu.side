@@ -1141,7 +1141,7 @@
       "id": "d6b8d262-19f5-4ae1-a089-4cfb115f2ffe",
       "comment": "",
       "command": "click",
-      "target": "id=crearPlato",
+      "target": "id=eliminarPlato",
       "targets": [
         ["id=crearPlato", "id"],
         ["css=#crearPlato", "css:finder"],
