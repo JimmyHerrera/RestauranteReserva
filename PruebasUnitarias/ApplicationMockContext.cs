@@ -85,11 +85,11 @@ namespace PruebasUnitarias
         {
             return new List<Reserva>
             {
-               new Reserva { Id = 1, NombreCliente="Juan Perez Soza", Celular = "963258741", FechaReserva = DateTime.Now, MesaId = 1, Mesa = new Mesa(){ } },
+                  new Reserva { Id = 1, NombreCliente="Juan Perez Soza", Celular = "963258741", FechaReserva = DateTime.Now, MesaId = 1, Mesa = new Mesa(){ } },
                new Reserva { Id = 2, NombreCliente="Jose Perez Soza", Celular = "456987412", FechaReserva = DateTime.Now, MesaId = 2, Mesa = new Mesa(){ } },
                new Reserva { Id = 3, NombreCliente="Mario Perez Soza", Celular = "963258745", FechaReserva = DateTime.Now, MesaId = 3, Mesa = new Mesa(){ } },
                new Reserva { Id = 4, NombreCliente="Juan Galvez Soza", Celular = "963258345", FechaReserva = DateTime.Now, MesaId = 4, Mesa = new Mesa(){ } },
-
+               new Reserva { Id = 5, NombreCliente="Nataly Cerquin", Celular = "963258340", FechaReserva = DateTime.Now, MesaId = 7, Mesa = new Mesa(){ } }
             }.AsQueryable();
         }
 

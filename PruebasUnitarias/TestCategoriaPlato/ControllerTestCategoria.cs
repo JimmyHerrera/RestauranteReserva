@@ -122,5 +122,57 @@ namespace PruebasUnitarias.TestCategoriaPlato
 
             Assert.IsInstanceOf<RedirectToActionResult>(view);
         }
+
+        [Test]
+        public void TestDeleteReturnCategoriaIsOkCase07()
+        {
+            categoriaRepository.Setup(a => a.getCategoria(5)).Returns(new CategoriaPlato());
+
+            var controller = new CategoriasController(categoriaRepository.Object);
+
+            var view = controller.Delete(5) as ViewResult;
+
+            Assert.IsInstanceOf<CategoriaPlato>(view.Model);
+        }
+
+        [Test]
+        public void TestDeleteReturnCategoria1IsOkCase08()
+        {
+            var categoria = new CategoriaPlato()
+            {
+                Id = 2,
+                NombreCategoria = "Categoria 3"
+            };
+
+            categoriaRepository.Setup(a => a.getCategoria(2)).Returns(categoria);
+
+            var controller = new CategoriasController(categoriaRepository.Object);
+
+            var view = controller.Delete(2) as ViewResult;
+
+            CategoriaPlato plato = (CategoriaPlato)view.Model;
+
+            Assert.AreEqual("Categoria 3", plato.NombreCategoria);
+        }
+
+        [Test]
+        public void TestDeleteCategoriaIsOkCase09()
+        {
+            categoriaRepository.Setup(a => a.deleteCategoria(5));
+
+            var httpContext = new DefaultHttpContext();
+            var tempData = new TempDataDictionary(httpContext, Mock.Of<ITempDataProvider>());
+
+            tempData["mensaje"] = "La categoria se ha eliminado correctamente";
+
+            var controller = new CategoriasController(categoriaRepository.Object)
+            {
+                TempData = tempData
+            };
+
+            var view = controller.DeleteCategoria(5);
+
+            Assert.IsInstanceOf<RedirectToActionResult>(view);
+        }
     }
 }
